@@ -41,10 +41,10 @@ dependencies {
 	// Base Fabric dependencies
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
 
 	// Mod dependencies
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 	modApi include("org.ladysnake.cardinal-components-api:cardinal-components-base:${project.cca_version}")
 	modApi include("org.ladysnake.cardinal-components-api:cardinal-components-entity:${project.cca_version}")
 
@@ -56,9 +56,9 @@ dependencies {
 
 	// Dev Runtime
 	testmodImplementation sourceSets.main.output
-	//modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
-	//modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
-	//modLocalRuntime "com.terraformersmc:modmenu:${project.mod_menu_version}"
+	modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+	modLocalRuntime "com.terraformersmc:modmenu:${project.mod_menu_version}"
 }
 
 processResources {
