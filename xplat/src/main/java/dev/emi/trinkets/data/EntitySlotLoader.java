@@ -24,9 +24,6 @@ import dev.emi.trinkets.api.SlotGroup;
 import dev.emi.trinkets.data.SlotLoader.GroupData;
 import dev.emi.trinkets.data.SlotLoader.SlotData;
 import dev.emi.trinkets.payload.SyncSlotsPayload;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
-import net.fabricmc.fabric.api.resource.ResourceReloadListenerKeys;
 import net.minecraft.entity.EntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.resource.Resource;
@@ -37,13 +34,13 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.profiler.Profiler;
 
-public class EntitySlotLoader extends SinglePreparationResourceReloader<Map<String, Map<String, Set<String>>>> implements IdentifiableResourceReloadListener {
+public class EntitySlotLoader extends SinglePreparationResourceReloader<Map<String, Map<String, Set<String>>>> {
 
 	public static final EntitySlotLoader CLIENT = new EntitySlotLoader();
 	public static final EntitySlotLoader SERVER = new EntitySlotLoader();
 
 	private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
-	private static final Identifier ID = Identifier.of(TrinketsMain.MOD_ID, "entities");
+	public static final Identifier ID = Identifier.of(TrinketsMain.MOD_ID, "entities");
 
 	private final Map<EntityType<?>, Map<String, SlotGroup>> slots = new HashMap<>();
 
@@ -203,15 +200,5 @@ public class EntitySlotLoader extends SinglePreparationResourceReloader<Map<Stri
 		var packet = new SyncSlotsPayload(Map.copyOf(this.slots));
 		players.forEach(player -> ServerPlayNetworking.send(player, packet));
 		players.forEach(player -> ((TrinketPlayerScreenHandler) player.playerScreenHandler).trinkets$updateTrinketSlots(true));
-	}
-
-	@Override
-	public Identifier getFabricId() {
-		return ID;
-	}
-
-	@Override
-	public Collection<Identifier> getFabricDependencies() {
-		return Lists.newArrayList(SlotLoader.ID, ResourceReloadListenerKeys.TAGS);
 	}
 }

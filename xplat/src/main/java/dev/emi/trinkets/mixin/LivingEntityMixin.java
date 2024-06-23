@@ -17,6 +17,7 @@ import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketInventory;
 import dev.emi.trinkets.api.TrinketsApi;
 import dev.emi.trinkets.payload.SyncInventoryPayload;
+import dev.emi.trinkets.platform.TrinketsAgnos;
 import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -34,9 +35,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import dev.emi.trinkets.TrinketPlayerScreenHandler;
 import dev.emi.trinkets.api.SlotAttributes.SlotEntityAttribute;
 import dev.emi.trinkets.api.TrinketEnums.DropRule;
-import dev.emi.trinkets.api.event.TrinketDropCallback;
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -95,7 +93,7 @@ public abstract class LivingEntityMixin extends Entity {
 
 			DropRule dropRule = TrinketsApi.getTrinket(stack.getItem()).getDropRule(stack, ref, entity);
 
-			dropRule = TrinketDropCallback.EVENT.invoker().drop(dropRule, stack, ref, entity);
+			dropRule = TrinketsAgnos.fireTrinketDropEvent(dropRule, stack, ref, entity);
 			
 			TrinketInventory inventory = ref.inventory();
 

@@ -30,7 +30,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.emi.trinkets.TrinketsMain"
+      "dev.emi.trinkets.fabric.TrinketsImpl"
     ],
     "client": [
       "dev.emi.trinkets.TrinketsClient"

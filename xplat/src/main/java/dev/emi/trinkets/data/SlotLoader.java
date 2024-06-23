@@ -22,7 +22,6 @@ import dev.emi.trinkets.TrinketsMain;
 import dev.emi.trinkets.api.SlotType;
 import dev.emi.trinkets.api.TrinketEnums.DropRule;
 import dev.emi.trinkets.data.SlotLoader.GroupData;
-import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.SinglePreparationResourceReloader;
@@ -30,11 +29,11 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.profiler.Profiler;
 
-public class SlotLoader extends SinglePreparationResourceReloader<Map<String, GroupData>> implements IdentifiableResourceReloadListener {
+public class SlotLoader extends SinglePreparationResourceReloader<Map<String, GroupData>> {
 
 	public static final SlotLoader INSTANCE = new SlotLoader();
 
-	static final Identifier ID = Identifier.of(TrinketsMain.MOD_ID, "slots");
+	public static final Identifier ID = Identifier.of(TrinketsMain.MOD_ID, "slots");
 
 	private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
 	private static final int FILE_SUFFIX_LENGTH = ".json".length();
@@ -91,11 +90,6 @@ public class SlotLoader extends SinglePreparationResourceReloader<Map<String, Gr
 
 	public Map<String, GroupData> getSlots() {
 		return ImmutableMap.copyOf(this.slots);
-	}
-
-	@Override
-	public Identifier getFabricId() {
-		return ID;
 	}
 
 	static class GroupData {

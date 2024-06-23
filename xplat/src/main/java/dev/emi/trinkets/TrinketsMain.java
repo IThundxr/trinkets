@@ -16,8 +16,6 @@ import dev.emi.trinkets.api.SlotType;
 import dev.emi.trinkets.payload.BreakPayload;
 import dev.emi.trinkets.payload.SyncInventoryPayload;
 import dev.emi.trinkets.payload.SyncSlotsPayload;
-import net.fabricmc.fabric.api.event.player.UseItemCallback;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -30,32 +28,19 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 
 import dev.emi.trinkets.data.EntitySlotLoader;
-import dev.emi.trinkets.data.SlotLoader;
-import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;
-import org.ladysnake.cca.api.v3.entity.EntityComponentInitializer;
-import org.ladysnake.cca.api.v3.entity.RespawnCopyStrategy;
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.command.argument.ItemStackArgument;
 import net.minecraft.command.argument.ItemStackArgumentType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.resource.ResourceType;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 
-public class TrinketsMain implements ModInitializer, EntityComponentInitializer {
+public class TrinketsMain implements EntityComponentInitializer {
 
 	public static final String MOD_ID = "trinkets";
 	public static final Logger LOGGER = LogManager.getLogger();
-
-	@Override
-	public void onInitialize() {
-		ResourceManagerHelper resourceManagerHelper = ResourceManagerHelper.get(ResourceType.SERVER_DATA);
-		resourceManagerHelper.registerReloadListener(SlotLoader.INSTANCE);
-		resourceManagerHelper.registerReloadListener(EntitySlotLoader.SERVER);
+	
+	public static void init() {
 		ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, serverResourceManager, success)
 				-> EntitySlotLoader.SERVER.sync(server.getPlayerManager().getPlayerList()));
 		UseItemCallback.EVENT.register((player, world, hand) -> {
