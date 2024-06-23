@@ -19,7 +19,6 @@ import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
-import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -31,7 +30,6 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
-import org.ladysnake.cca.api.v3.entity.RespawnableComponent;
 
 public class LivingEntityTrinketComponent implements TrinketComponent, AutoSyncedComponent, RespawnableComponent {
 

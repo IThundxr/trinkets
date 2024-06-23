@@ -8,7 +8,6 @@ import dev.emi.trinkets.api.TrinketsApi;
 import dev.emi.trinkets.api.Trinket;
 import dev.emi.trinkets.data.EntitySlotLoader;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;

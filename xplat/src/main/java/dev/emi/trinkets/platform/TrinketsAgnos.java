@@ -2,8 +2,11 @@ package dev.emi.trinkets.platform;
 
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketEnums.DropRule;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.CustomPayload;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public abstract class TrinketsAgnos {
     public static TrinketsAgnos delegate;
@@ -34,4 +37,16 @@ public abstract class TrinketsAgnos {
     }
 
     protected abstract DropRule fireTrinketDropEventAgnos(DropRule rule, ItemStack stack, SlotReference ref, LivingEntity entity);
+
+    public static void sendToClient(ServerPlayerEntity player, CustomPayload payload) {
+        delegate.sendToClientAgnos(player, payload);
+    }
+
+    protected abstract void sendToClientAgnos(ServerPlayerEntity player, CustomPayload payload);
+    
+    public static void sendToClientsTrackingEntity(Entity entity, CustomPayload payload) {
+        delegate.sendToClientsTrackingEntityAgnos(entity, payload);
+    }
+    
+    protected abstract void sendToClientsTrackingEntityAgnos(Entity entity, CustomPayload payload);
 }

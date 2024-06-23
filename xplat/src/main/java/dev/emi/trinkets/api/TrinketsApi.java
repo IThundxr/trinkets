@@ -6,6 +6,7 @@ import dev.emi.trinkets.TrinketSlotTarget;
 import dev.emi.trinkets.TrinketsMain;
 import dev.emi.trinkets.data.EntitySlotLoader;
 import dev.emi.trinkets.payload.BreakPayload;
+import dev.emi.trinkets.platform.TrinketsAgnos;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.server.world.ServerWorld;
 import net.fabricmc.api.EnvType;
@@ -67,13 +68,12 @@ public class TrinketsApi {
 	public static void onTrinketBroken(ItemStack stack, SlotReference ref, LivingEntity entity) {
 		World world = entity.getWorld();
 		if (!world.isClient) {
-			var packet = new BreakPayload(entity.getId(), ref.inventory().getSlotType().getGroup(), ref.inventory().getSlotType().getName(), ref.index());
+			BreakPayload packet = new BreakPayload(entity.getId(), ref.inventory().getSlotType().getGroup(), ref.inventory().getSlotType().getName(), ref.index());
 			if (entity instanceof ServerPlayerEntity player) {
-				ServerPlayNetworking.send(player, packet);
+				TrinketsAgnos.sendToClient(player, packet);
 			}
-			PlayerLookup.tracking(entity).forEach(watcher -> {
-				ServerPlayNetworking.send(watcher, packet);
-			});
+
+			TrinketsAgnos.sendToClientsTrackingEntity(entity, packet);
 		}
 	}
 

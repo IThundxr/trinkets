@@ -240,12 +240,10 @@ public abstract class LivingEntityMixin extends Entity {
 					}
                     SyncInventoryPayload packet = new SyncInventoryPayload(this.getId(), contentUpdates, map);
 
-					for (ServerPlayerEntity player : PlayerLookup.tracking(entity)) {
-						ServerPlayNetworking.send(player, packet);
-					}
+					TrinketsAgnos.sendToClientsTrackingEntity(entity, packet);
 
 					if (entity instanceof ServerPlayerEntity serverPlayer) {
-						ServerPlayNetworking.send(serverPlayer, packet);
+						TrinketsAgnos.sendToClient(serverPlayer, packet);
 
 						if (!inventoriesToSend.isEmpty()) {
 							((TrinketPlayerScreenHandler) serverPlayer.playerScreenHandler).trinkets$updateTrinketSlots(false);

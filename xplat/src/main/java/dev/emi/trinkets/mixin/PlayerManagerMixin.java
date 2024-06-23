@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import dev.emi.trinkets.payload.SyncInventoryPayload;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import dev.emi.trinkets.platform.TrinketsAgnos;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.server.PlayerManager;
@@ -41,7 +41,7 @@ public abstract class PlayerManagerMixin {
 			for (TrinketInventory trinketInventory : inventoriesToSend) {
 				tag.put(trinketInventory.getSlotType().getId(), trinketInventory.getSyncTag());
 			}
-			ServerPlayNetworking.send(player, new SyncInventoryPayload(player.getId(), Map.of(), tag));
+			TrinketsAgnos.sendToClient(player, new SyncInventoryPayload(player.getId(), Map.of(), tag));
 			inventoriesToSend.clear();
 		});
 	}

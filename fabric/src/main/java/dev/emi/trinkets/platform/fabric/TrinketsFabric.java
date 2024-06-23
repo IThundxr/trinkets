@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.resource.ResourceType;
 
-public class TrinketsImpl implements ModInitializer {
+public class TrinketsFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         TrinketsMain.init();

@@ -2,7 +2,6 @@ package dev.emi.trinkets.data;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -10,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -24,6 +22,7 @@ import dev.emi.trinkets.api.SlotGroup;
 import dev.emi.trinkets.data.SlotLoader.GroupData;
 import dev.emi.trinkets.data.SlotLoader.SlotData;
 import dev.emi.trinkets.payload.SyncSlotsPayload;
+import dev.emi.trinkets.platform.TrinketsAgnos;
 import net.minecraft.entity.EntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.resource.Resource;
@@ -193,12 +192,12 @@ public class EntitySlotLoader extends SinglePreparationResourceReloader<Map<Stri
 	}
 
 	public void sync(ServerPlayerEntity playerEntity) {
-		ServerPlayNetworking.send(playerEntity, new SyncSlotsPayload(Map.copyOf(this.slots)));
+		TrinketsAgnos.sendToClient(playerEntity, new SyncSlotsPayload(Map.copyOf(this.slots)));
 	}
 
 	public void sync(List<? extends ServerPlayerEntity> players) {
 		var packet = new SyncSlotsPayload(Map.copyOf(this.slots));
-		players.forEach(player -> ServerPlayNetworking.send(player, packet));
+		players.forEach(player -> TrinketsAgnos.sendToClient(player, packet));
 		players.forEach(player -> ((TrinketPlayerScreenHandler) player.playerScreenHandler).trinkets$updateTrinketSlots(true));
 	}
 }
