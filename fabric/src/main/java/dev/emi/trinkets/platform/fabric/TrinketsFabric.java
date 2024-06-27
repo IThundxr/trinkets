@@ -7,6 +7,7 @@ import dev.emi.trinkets.data.SlotLoader;
 import dev.emi.trinkets.network.payload.BreakPayload;
 import dev.emi.trinkets.network.payload.SyncInventoryPayload;
 import dev.emi.trinkets.network.payload.SyncSlotsPayload;
+import dev.emi.trinkets.platform.fabric.events.CommonEventsFabric;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
@@ -17,6 +18,7 @@ public class TrinketsFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         TrinketsMain.init();
+        CommonEventsFabric.init();
 
         ResourceManagerHelper resourceManagerHelper = ResourceManagerHelper.get(ResourceType.SERVER_DATA);
         resourceManagerHelper.registerReloadListener((IdentifiableResourceReloadListener) SlotLoader.INSTANCE);

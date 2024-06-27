@@ -31,8 +31,6 @@ import java.util.function.Consumer;
 import net.minecraft.world.World;
 
 public class TrinketsApi {
-	public static final ComponentKey<TrinketComponent> TRINKET_COMPONENT = ComponentRegistryV3.INSTANCE
-			.getOrCreate(Identifier.of(TrinketsMain.MOD_ID, "trinkets"), TrinketComponent.class);
 	private static final Map<Identifier, Function3<ItemStack, SlotReference, LivingEntity, TriState>> PREDICATES = new HashMap<>();
 	
 	private static final Map<Item, Trinket> TRINKETS = new HashMap<>();
@@ -52,13 +50,6 @@ public class TrinketsApi {
 
 	public static Trinket getDefaultTrinket() {
 		return DEFAULT_TRINKET;
-	}
-
-	/**
-	 * @return The trinket component for this entity, if available
-	 */
-	public static Optional<TrinketComponent> getTrinketComponent(LivingEntity livingEntity) {
-		return TRINKET_COMPONENT.maybeGet(livingEntity);
 	}
 
 	/**

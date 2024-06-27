@@ -13,10 +13,6 @@ import dev.emi.trinkets.api.TrinketsApi;
 import dev.emi.trinkets.api.TrinketsAttributeModifiersComponent;
 import dev.emi.trinkets.api.SlotGroup;
 import dev.emi.trinkets.api.SlotType;
-import dev.emi.trinkets.network.TrinketsNetwork;
-import dev.emi.trinkets.network.payload.BreakPayload;
-import dev.emi.trinkets.network.payload.SyncInventoryPayload;
-import dev.emi.trinkets.network.payload.SyncSlotsPayload;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -36,7 +32,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 
-public class TrinketsMain implements EntityComponentInitializer {
+public class TrinketsMain {
 
 	public static final String MOD_ID = "trinkets";
 	public static final Logger LOGGER = LogManager.getLogger();
@@ -44,16 +40,6 @@ public class TrinketsMain implements EntityComponentInitializer {
 	public static void init() {
 		ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, serverResourceManager, success)
 				-> EntitySlotLoader.SERVER.sync(server.getPlayerManager().getPlayerList()));
-		UseItemCallback.EVENT.register((player, world, hand) -> {
-			ItemStack stack = player.getStackInHand(hand);
-			Trinket trinket = TrinketsApi.getTrinket(stack.getItem());
-			if (trinket.canEquipFromUse(stack, player)) {
-				if (TrinketItem.equipItem(player, stack)) {
-					return TypedActionResult.success(stack);
-				}
-			}
-			return TypedActionResult.pass(stack);
-		});
 		Registry.register(Registries.DATA_COMPONENT_TYPE, Identifier.of(MOD_ID, "attribute_modifiers"), TrinketsAttributeModifiersComponent.TYPE);
 		CommandRegistrationCallback.EVENT.register((dispatcher, registry, env) ->
 			dispatcher.register(literal("trinkets")

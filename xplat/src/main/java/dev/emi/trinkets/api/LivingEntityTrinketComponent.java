@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 
@@ -32,7 +31,7 @@ import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 
 public class LivingEntityTrinketComponent implements TrinketComponent, AutoSyncedComponent, RespawnableComponent {
-
+	
 	public Map<String, Map<String, TrinketInventory>> inventory = new HashMap<>();
 	public Set<TrinketInventory> trackingUpdates = new HashSet<>();
 	public Map<String, SlotGroup> groups = new HashMap<>();
