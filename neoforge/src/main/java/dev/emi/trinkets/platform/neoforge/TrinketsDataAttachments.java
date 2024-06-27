@@ -13,7 +13,7 @@ public class TrinketsDataAttachments {
     private static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, TrinketsMain.MOD_ID);
 
     public static final Supplier<AttachmentType<LivingEntityTrinketComponent>> LIVING_ENTITY_TRINKET_COMPONENT = ATTACHMENT_TYPES.register(
-            "living_entity_trinket_component", () -> AttachmentType.serializable(new LivingEntityTrinketComponent()).build()
+            "living_entity_trinket_component", () -> AttachmentType.serializable(new LivingEntityTrinketComponent(null)).copyOnDeath().build()
     );
 
     public static void register(IEventBus modEventBus) { ATTACHMENT_TYPES.register(modEventBus); }

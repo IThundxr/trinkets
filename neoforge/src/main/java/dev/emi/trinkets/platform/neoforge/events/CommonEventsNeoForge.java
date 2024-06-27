@@ -28,13 +28,6 @@ public class CommonEventsNeoForge {
     }
 
     @SubscribeEvent
-    public static void onPlayerClone(PlayerEvent.Clone event) {
-        if (event.isWasDeath() && event.getOriginal().hasData(MY_DATA)) {
-            event.getEntity().getData(MY_DATA).fieldToCopy = event.getOriginal().getData(MY_DATA).fieldToCopy;
-        }
-    }
-
-    @SubscribeEvent
     public static void onRegisterPayloadHandlers(final RegisterPayloadHandlersEvent event) {
         final PayloadRegistrar registrar = event.registrar(TrinketsMain.MOD_ID);
 

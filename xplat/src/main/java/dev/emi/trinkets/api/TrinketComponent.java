@@ -2,7 +2,6 @@ package dev.emi.trinkets.api;
 
 import com.google.common.collect.Multimap;
 
-import org.ladysnake.cca.api.v3.component.ComponentV3;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
@@ -15,7 +14,7 @@ import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 
-public interface TrinketComponent extends ComponentV3 {
+public interface TrinketComponent {
 
 	LivingEntity getEntity();
 

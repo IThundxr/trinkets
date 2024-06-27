@@ -30,7 +30,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 
-public class LivingEntityTrinketComponent implements TrinketComponent, AutoSyncedComponent, RespawnableComponent {
+public class LivingEntityTrinketComponent implements TrinketComponent {
 	
 	public Map<String, Map<String, TrinketInventory>> inventory = new HashMap<>();
 	public Set<TrinketInventory> trackingUpdates = new HashSet<>();
