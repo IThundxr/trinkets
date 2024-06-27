@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import dev.emi.trinkets.payload.SyncInventoryPayload;
+import dev.emi.trinkets.network.payload.SyncInventoryPayload;
 import dev.emi.trinkets.platform.TrinketsAgnos;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.ClientConnection;

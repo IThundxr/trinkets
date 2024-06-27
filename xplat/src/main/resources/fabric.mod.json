@@ -33,7 +33,7 @@
       "dev.emi.trinkets.platform.fabric.TrinketsFabric"
     ],
     "client": [
-      "dev.emi.trinkets.TrinketsClient"
+      "dev.emi.trinkets.platform.fabric.client.TrinketsClientFabric"
     ],
     "cardinal-components-entity": [
       "dev.emi.trinkets.TrinketsMain"

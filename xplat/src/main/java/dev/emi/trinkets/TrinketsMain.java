@@ -13,9 +13,10 @@ import dev.emi.trinkets.api.TrinketsApi;
 import dev.emi.trinkets.api.TrinketsAttributeModifiersComponent;
 import dev.emi.trinkets.api.SlotGroup;
 import dev.emi.trinkets.api.SlotType;
-import dev.emi.trinkets.payload.BreakPayload;
-import dev.emi.trinkets.payload.SyncInventoryPayload;
-import dev.emi.trinkets.payload.SyncSlotsPayload;
+import dev.emi.trinkets.network.TrinketsNetwork;
+import dev.emi.trinkets.network.payload.BreakPayload;
+import dev.emi.trinkets.network.payload.SyncInventoryPayload;
+import dev.emi.trinkets.network.payload.SyncSlotsPayload;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -54,9 +55,6 @@ public class TrinketsMain implements EntityComponentInitializer {
 			return TypedActionResult.pass(stack);
 		});
 		Registry.register(Registries.DATA_COMPONENT_TYPE, Identifier.of(MOD_ID, "attribute_modifiers"), TrinketsAttributeModifiersComponent.TYPE);
-		PayloadTypeRegistry.playS2C().register(TrinketsNetwork.BREAK, BreakPayload.CODEC);
-		PayloadTypeRegistry.playS2C().register(TrinketsNetwork.SYNC_INVENTORY, SyncInventoryPayload.CODEC);
-		PayloadTypeRegistry.playS2C().register(TrinketsNetwork.SYNC_SLOTS, SyncSlotsPayload.CODEC);
 		CommandRegistrationCallback.EVENT.register((dispatcher, registry, env) ->
 			dispatcher.register(literal("trinkets")
 				.requires(source -> source.hasPermissionLevel(2))

@@ -5,7 +5,7 @@ import com.mojang.datafixers.util.Function3;
 import dev.emi.trinkets.TrinketSlotTarget;
 import dev.emi.trinkets.TrinketsMain;
 import dev.emi.trinkets.data.EntitySlotLoader;
-import dev.emi.trinkets.payload.BreakPayload;
+import dev.emi.trinkets.network.payload.BreakPayload;
 import dev.emi.trinkets.platform.TrinketsAgnos;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.server.world.ServerWorld;

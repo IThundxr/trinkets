@@ -16,7 +16,7 @@ import dev.emi.trinkets.api.Trinket;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketInventory;
 import dev.emi.trinkets.api.TrinketsApi;
-import dev.emi.trinkets.payload.SyncInventoryPayload;
+import dev.emi.trinkets.network.payload.SyncInventoryPayload;
 import dev.emi.trinkets.platform.TrinketsAgnos;
 import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.entity.attribute.EntityAttributeInstance;

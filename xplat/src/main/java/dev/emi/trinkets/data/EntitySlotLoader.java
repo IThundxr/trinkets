@@ -21,7 +21,7 @@ import dev.emi.trinkets.TrinketsMain;
 import dev.emi.trinkets.api.SlotGroup;
 import dev.emi.trinkets.data.SlotLoader.GroupData;
 import dev.emi.trinkets.data.SlotLoader.SlotData;
-import dev.emi.trinkets.payload.SyncSlotsPayload;
+import dev.emi.trinkets.network.payload.SyncSlotsPayload;
 import dev.emi.trinkets.platform.TrinketsAgnos;
 import net.minecraft.entity.EntityType;
 import net.minecraft.registry.Registries;

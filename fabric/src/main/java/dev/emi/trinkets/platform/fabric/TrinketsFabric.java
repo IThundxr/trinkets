@@ -1,12 +1,12 @@
 package dev.emi.trinkets.platform.fabric;
 
 import dev.emi.trinkets.TrinketsMain;
-import dev.emi.trinkets.TrinketsNetwork;
+import dev.emi.trinkets.network.TrinketsNetwork;
 import dev.emi.trinkets.data.EntitySlotLoader;
 import dev.emi.trinkets.data.SlotLoader;
-import dev.emi.trinkets.payload.BreakPayload;
-import dev.emi.trinkets.payload.SyncInventoryPayload;
-import dev.emi.trinkets.payload.SyncSlotsPayload;
+import dev.emi.trinkets.network.payload.BreakPayload;
+import dev.emi.trinkets.network.payload.SyncInventoryPayload;
+import dev.emi.trinkets.network.payload.SyncSlotsPayload;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
